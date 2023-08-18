@@ -16,9 +16,10 @@ const AddTask = () => {
     if (!isEmpty(task)) {
       try {
         const docRef = await addDoc(collection(db, "task"), {
-          name: "task",
+          name: task,
           completed: false,
         });
+        setTask("");
         console.log("Tarea creada");
       } catch (e) {
         console.error("Error al adicionar tarea");
@@ -32,6 +33,7 @@ const AddTask = () => {
         type="text"
         placeholder="Nueva tarea"
         onChange={(event) => setTask(event.target.value)}
+        value={task}
       />
       <Button type="submit">
         <Send />
