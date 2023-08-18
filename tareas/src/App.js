@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-
+import db from "./utils/firebase";
+import { collection, getDocs, orderBy } from "firebase/firestore";
+import "firebase/firestore";
 import AddTask from "./components/AddTask/AddTask";
 
 import "./App.scss";
 
 function App() {
+  const [tasks, setTasks] = useState([]);
+  console.log(tasks);
+
+  useEffect(() => {
+    const obtenerDatos = async () => {
+      const datos = await getDocs(collection(db, "task"), orderBy("completed"));
+      // console.log(datos.docs[0].data());
+      const arrayTasks = [];
+      datos.forEach((doc) => {
+        const data = doc.data();
+        data.id = doc.id;
+        arrayTasks.push(data);
+      });
+      setTasks(arrayTasks);
+    };
+    obtenerDatos();
+  }, []);
+
   return (
     <Container fluid className="app">
       <div className="title">
