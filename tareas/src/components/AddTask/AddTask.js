@@ -8,7 +8,8 @@ import { ReactComponent as Send } from "../../assets/send.svg";
 
 import "./AddTask.scss";
 
-const AddTask = () => {
+const AddTask = (props) => {
+  const { setReloadTask } = props;
   const [task, setTask] = useState("");
 
   const onSubmit = async (event) => {
@@ -20,8 +21,8 @@ const AddTask = () => {
           completed: false,
         });
         setTask("");
-        console.log("Tarea creada");
-      } catch (e) {
+        setReloadTask(true);
+      } catch (event) {
         console.error("Error al adicionar tarea");
       }
     }
