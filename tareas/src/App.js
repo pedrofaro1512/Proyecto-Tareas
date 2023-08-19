@@ -32,7 +32,7 @@ function App() {
   return (
     <Container fluid className="app">
       <div className="title">
-        <h1>Pedro Romero</h1>
+        <h1>Aplicación de tareas - Pedro Romero</h1>
       </div>
 
       <Row className="todo">
@@ -41,7 +41,7 @@ function App() {
           xs={{ span: 10, offset: 1 }}
           md={{ span: 6, offset: 3 }}
         >
-          <h2>Today</h2>
+          <h2>Lista de Tareas </h2>
         </Col>
         <Col
           className="todo__list"
