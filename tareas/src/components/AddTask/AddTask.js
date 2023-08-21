@@ -32,7 +32,7 @@ const AddTask = (props) => {
     <Form onSubmit={onSubmit} className="add-task">
       <input
         type="text"
-        placeholder="Nueva tarea"
+        placeholder="Digita nueva tarea"
         onChange={(event) => setTask(event.target.value)}
         value={task}
       />
