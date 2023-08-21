@@ -5,6 +5,7 @@ import { collection, getDocs, orderBy } from "firebase/firestore";
 import "firebase/firestore";
 import AddTask from "./components/AddTask/AddTask";
 import Task from "./components/Task/Task";
+import ExportToExcelButton from "./components/Excel/Excel";
 import { map, size } from "lodash";
 
 import "./App.scss";
@@ -30,46 +31,51 @@ function App() {
   }, [reloadTask]);
 
   return (
-    <Container fluid className="app">
-      <div className="title">
-        <h1>Aplicación de tareas - Pedro Romero</h1>
-      </div>
+    <>
+      <Container fluid className="app">
+        <div className="title">
+          <h1>Aplicación de tareas - Pedro Romero</h1>
+        </div>
 
-      <Row className="todo">
-        <Col
-          className="todo__title"
-          xs={{ span: 10, offset: 1 }}
-          md={{ span: 6, offset: 3 }}
-        >
-          <h2>Lista de Tareas </h2>
-        </Col>
-        <Col
-          className="todo__list"
-          xs={{ span: 10, offset: 1 }}
-          md={{ span: 6, offset: 3 }}
-        >
-          {!tasks ? (
-            <div className="loading">
-              <Spinner animation="border" />
-              <span>Cargando...</span>
-            </div>
-          ) : size(tasks) === 0 ? (
-            <h3>No hay tareas</h3>
-          ) : (
-            map(tasks, (task, index) => (
-              <Task key={index} task={task} setReloadTask={setReloadTask} />
-            ))
-          )}
-        </Col>
-        <Col
-          className="todo__input"
-          xs={{ span: 10, offset: 1 }}
-          md={{ span: 6, offset: 3 }}
-        >
-          <AddTask setReloadTask={setReloadTask} reloadTask={reloadTask} />
-        </Col>
-      </Row>
-    </Container>
+        <Row className="todo">
+          <Col
+            className="todo__title"
+            xs={{ span: 10, offset: 1 }}
+            md={{ span: 6, offset: 3 }}
+          >
+            <h2>Lista de Tareas </h2>
+          </Col>
+          <Col
+            className="todo__list"
+            xs={{ span: 10, offset: 1 }}
+            md={{ span: 6, offset: 3 }}
+          >
+            {!tasks ? (
+              <div className="loading">
+                <Spinner animation="border" />
+                <span>Cargando...</span>
+              </div>
+            ) : size(tasks) === 0 ? (
+              <h3>No hay tareas</h3>
+            ) : (
+              map(tasks, (task, index) => (
+                <Task key={index} task={task} setReloadTask={setReloadTask} />
+              ))
+            )}
+          </Col>
+          <Col
+            className="todo__input"
+            xs={{ span: 10, offset: 1 }}
+            md={{ span: 6, offset: 3 }}
+          >
+            <AddTask setReloadTask={setReloadTask} reloadTask={reloadTask} />
+          </Col>
+        </Row>
+      </Container>
+      <div className="btn-excel">
+        <ExportToExcelButton />
+      </div>
+    </>
   );
 }
 
