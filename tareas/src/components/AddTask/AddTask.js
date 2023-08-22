@@ -23,7 +23,7 @@ const AddTask = (props) => {
         setTask("");
         setReloadTask(true);
       } catch (event) {
-        console.error("Error al adicionar tarea");
+        console.error("Error al agregar tarea");
       }
     }
   };
@@ -32,7 +32,7 @@ const AddTask = (props) => {
     <Form onSubmit={onSubmit} className="add-task">
       <input
         type="text"
-        placeholder="Digita nueva tarea"
+        placeholder="Digita la nueva tarea"
         onChange={(event) => setTask(event.target.value)}
         value={task}
       />
